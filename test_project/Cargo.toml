@@ -1,7 +1,0 @@
-[package]
-name = "test_project"
-version = "0.1.0"
-authors = ["Taylor Putnam <putntayl@isu.edu>"]
-edition = "2018"
-
-[dependencies]
