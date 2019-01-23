@@ -1,6 +1,9 @@
 extern crate image;
-
+//  https://drive.google.com/drive/folders/14yayBb9XiL16lmuhbYhhvea8mKUUK77W
 use std::ops::Sub;
+use std::ops::Add;
+use std::ops::Mul;
+
 use std::path::Path;
 
 struct Point {
@@ -66,11 +69,40 @@ impl Vector {
     fn new(x: f32, y: f32, z: f32) -> Vector {
         Vector { x: x, y: y, z: z }
     }
-    fn length(&self) -> f32{
-        (self.x*self.x + self.y*self.y+self.z*self.z).sqrt()
+    fn length(&self) -> f32 {
+        (self.x * self.x + self.y * self.y + self.z * self.z).sqrt()
+    }
+    fn make_unit_vector(self) -> Vector {
+        let k = 1.0 / self.length();
+        Vector::new( self.x * k, self.y * k, self.z * k)
     }
 }
 
+// dot product
+impl Mul<Vector> for Vector {
+    type Output = f32;
+    fn mul(self, other: Vector) -> f32 {
+        (self.x * other.x + self.y * other.y + self.z * other.z)
+    }
+}
+impl Mul<f32> for Vector {
+    type Output = Vector;
+    fn mul(self, other: f32) -> Vector {
+        Vector::new(self.x * other, self.y * other, self.z * other)
+    }
+}
+impl Sub<Vector> for Vector {
+    type Output = Vector;
+    fn sub(self, other: Vector) -> Vector {
+        Vector::new(self.x - other.x, self.y - other.y, self.z - other.z)
+    }
+}
+impl Add<Vector> for Vector {
+    type Output = Vector;
+    fn add(self, other: Vector) -> Vector {
+        Vector::new(self.x + other.x, self.y + other.y, self.z + other.z)
+    }
+}
 
 struct Sphere {
     radius: f32,
@@ -112,8 +144,10 @@ fn main() {
     let a = Point::new(0.0, 0.0, 0.0);
     let b = Point::new(1.0, 1.0, 1.0);
     let p1 = b - a;
+    let p2 = a - b;
     println!("{:?}", p1);
     println!("{:?}", p1.length());
+    println!("{:?}", p1*3);
 
     // flatten the color vect to a buffer.
     let buffer = flatten(&mut pixels);
