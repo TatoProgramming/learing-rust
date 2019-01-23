@@ -25,31 +25,17 @@ impl Sub for Point {
 }
 impl Point {
     fn zero() -> Point {
-        Point {
-            x: 0.0,
-            y: 0.0,
-            z: 0.0,
-        }
+        Point { x: 0.0, y: 0.0, z: 0.0, }
     }
     fn new(x: f32, y: f32, z: f32) -> Point {
         Point { x: x, y: y, z: z }
     }
 }
 
-struct Color {
-    r: f32,
-    b: f32,
-    g: f32,
-    a: f32,
-}
+struct Color { r: f32, b: f32, g: f32, a: f32, }
 impl Color {
     fn new(r: f32, b: f32, g: f32, a: f32) -> Color {
-        Color {
-            r: r,
-            b: b,
-            g: g,
-            a: a,
-        }
+        Color { r: r, b: b, g: g, a: a, }
     }
 }
 impl Copy for Color {}
@@ -60,11 +46,7 @@ impl Clone for Color {
 }
 
 #[derive(Debug)]
-struct Vector {
-    x: f32,
-    y: f32,
-    z: f32,
-}
+struct Vector { x: f32, y: f32, z: f32, }
 impl Vector {
     fn new(x: f32, y: f32, z: f32) -> Vector {
         Vector { x: x, y: y, z: z }
